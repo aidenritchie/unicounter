@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Universal Counter</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 50px;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      font-size: 2em;
+      width: 60px;
+      height: 60px;
+      margin: 20px;
+    }
+    #progressBarContainer {
+      width: 200px;
+      height: 20px;
+      background-color: #ddd;
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+    }
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background-color: #4caf50;
+    }
+    #targetProgressContainer {
+      width: 80%;
+      height: 30px;
+      background-color: #eee;
+      margin: 20px auto;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    #targetProgressBar {
+      height: 100%;
+      width: 0%;
+      background-color: #2196F3;
+      transition: width 0.5s ease;
+    }
+    button {
+      color: inherit;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>universal counter</h1>
+  <h2>target number: <span id="targetNumber">100</span></h2>
+  <h2>current count: <span id="counter">0</span></h2>
+  <h2>online users: <span id="onlineUsers">1</span></h2>
+  <h2>changes per second: <span id="changesPerSecond">0</span></h2>
+  <div id="targetProgressContainer">
+    <div id="targetProgressBar"></div>
+  </div>
+  <button id="increment">+</button>
+  <button id="decrement">–</button>
+  <div id="progressBarContainer">
+    <div id="progressBar"></div>
+  </div>
+<div style="position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px 0; height: 40px;">
+  <a href="https://github.com/aidenritchie/unicounter" style="text-decoration: none; color: inherit; display: flex; align-items: center; position: absolute; left: 10px; bottom: 10px;">
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" style="width: 16px; height: 16px; margin-right: 4px;">
+    aidenritchie/unicounter
+  </a>
+  <span style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 10px;">made by aiden ritchie</span>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
