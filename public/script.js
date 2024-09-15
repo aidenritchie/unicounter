@@ -15,40 +15,44 @@
 
   const COOLDOWN_TIME = 250;
 
+  const numberBeautifier = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const ws = new WebSocket(`ws://${window.location.host}`);
 
   ws.onopen = () => {
     console.log('Connected to WebSocket server');
   };
 
-ws.onmessage = (event) => {
+  ws.onmessage = (event) => {
     const data = JSON.parse(event.data);
 
     if (data.type === 'init') {
-        counter = data.counter;
-        targetNumber = data.targetNumber;
-        counterElem.textContent = counter;
-        targetNumberElem.textContent = targetNumber;
-        if (data.onlineUsers !== undefined) {
-            onlineUsersElem.textContent = data.onlineUsers;
-        }
-        updateTargetProgress();
+      counter = data.counter;
+      targetNumber = data.targetNumber;
+      counterElem.textContent = numberBeautifier(counter);
+      targetNumberElem.textContent = numberBeautifier(targetNumber);
+      if (data.onlineUsers !== undefined) {
+        onlineUsersElem.textContent = data.onlineUsers;
+      }
+      updateTargetProgress();
     } else if (data.type === 'update') {
-        counter = data.counter;
-        counterElem.textContent = counter;
-        updateTargetProgress();
+      counter = data.counter;
+      counterElem.textContent = numberBeautifier(counter);
+      updateTargetProgress();
     } else if (data.type === 'targetReached') {
-        alert('Target reached!');
-        counter = data.counter;
-        counterElem.textContent = counter;
-        targetNumberElem.textContent = targetNumber;
-        updateTargetProgress();
+      alert('Target reached!');
+      counter = data.counter;
+      counterElem.textContent = numberBeautifier(counter);
+      targetNumberElem.textContent = numberBeautifier(targetNumber);
+      updateTargetProgress();
     } else if (data.type === 'onlineUsers') {
-        onlineUsersElem.textContent = data.count;
+      onlineUsersElem.textContent = data.count;
     } else if (data.type === 'changesPerSecond') {
-        changesPerSecondElem.textContent = data.cps;
+      changesPerSecondElem.textContent = data.cps;
     }
-};
+  };
 
   ws.onerror = (error) => {
     console.error('WebSocket error:', error);
